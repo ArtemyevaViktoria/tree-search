@@ -1,0 +1,58 @@
+:host {
+  --horizontal-line-width: 2px;
+  --row-height: 1.6rem;
+}
+
+.tree {
+  background-color: lightgray;
+  position: relative;
+}
+
+.node-row {
+  background-color: cadetblue;
+  height: var(--row-height);
+  display: flex;
+  align-items: center;
+}
+
+.department {
+  position: relative;
+
+  .node-name::before {
+    content: '';
+    position: absolute;
+    top: 25%;
+    left: calc(var(--horizontal-line-width) / -2);
+    height: 50%;
+    border-left: var(--horizontal-line-width) solid black;
+    transform: rotate(90deg) translateY(50%);
+    z-index: 3;
+  }
+
+  .node-name::after {
+    content: '';
+    position: absolute;
+    top: calc(-100vh + (var(--row-height) / 2));
+    left: calc((var(--row-height) / -2));
+    height: 100vh;
+    border-left: var(--horizontal-line-width) solid black;
+    z-index: 3;
+  }
+}
+
+.position {
+  background-color: pink;
+  position: relative;
+  margin-left: 1.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
