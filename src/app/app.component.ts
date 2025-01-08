@@ -1,5 +1,5 @@
-import { Component } from "@angular/core"
-import { RouterOutlet } from "@angular/router"
+import { Component } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -8,6 +8,4 @@ import { RouterOutlet } from "@angular/router"
   styleUrl: "./app.component.scss",
   standalone: true,
 })
-export class AppComponent {
-  title = "tree-search"
-}
+export class AppComponent {}

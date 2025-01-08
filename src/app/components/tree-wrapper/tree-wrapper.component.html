@@ -1,0 +1,16 @@
+<div class="tree-wrapper">
+  <div class="header">header</div>
+
+  <div class="body">
+    @for (item of departments(); track item.nodeId) {
+      <app-tree class="node" [department]="item"></app-tree>
+    }
+  </div>
+
+  <div class="footer">footer</div>
+</div>
+
+
+
+
+
