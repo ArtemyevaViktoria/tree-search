@@ -18,6 +18,11 @@
 .department {
   position: relative;
 
+  .node-name {
+    display: flex;
+    align-items: center;
+  }
+
   .node-name::before {
     content: '';
     position: absolute;
@@ -38,6 +43,28 @@
     border-left: var(--horizontal-line-width) solid black;
     z-index: 3;
   }
+
+  .toggle-button {
+    cursor: pointer;
+    font-size: 0.8rem;
+    width: calc(var(--row-height) - var(--horizontal-line-width) / 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+
+  .toggle-button::before {
+    content: "\25B6"; /* стрелка вправо */
+  }
+
+  .toggle-button.expanded::before {
+    content: "\25BC"; /* стрелка вниз */
+  }
+
+  .toggle-button:focus-visible {
+    color: darkmagenta;
+  }
 }
 
 .position {
@@ -45,10 +72,6 @@
   position: relative;
   margin-left: 1.5rem;
 }
-
-
-
-
 
 
 

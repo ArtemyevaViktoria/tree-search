@@ -35,6 +35,9 @@ export class Department implements IDepartment<Department> {
   constructor(init?: Partial<DepartmentType>) {
     Object.assign(this, init);
 
+    // Установка isExpanded в true для корневых узлов (уровень вложенности 0)
+    this.isExpanded = this.hierarchyLevel === 0;
+
     // Инициализация подотделов, если они указаны в объекте init
     this.subDepartments = init?.subDepartments?.map((subDep) => new Department(subDep)) ?? [];
   }

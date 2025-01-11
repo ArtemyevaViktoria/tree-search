@@ -11,6 +11,11 @@ import { Department } from "src/app/models/department.model";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreeComponent {
-  // Данные отдела
+  /** Данные отдела */
   @Input() department: Department = {} as Department;
+
+  /** Изменяет состояние развернутости указанного отдела */
+  public toggleExpand(department: Department): void {
+    department.isExpanded = !department.isExpanded;
+  }
 }
