@@ -3,10 +3,20 @@
 
   <div class="node">
     <div class="node-row department" [ngStyle]="{'z-index': department.departmentZIndex}">
-      <div class="node-name">{{ department.name }}</div>
+      <div class="node-name">
+        <button
+          class="toggle-button"
+          [ngClass]="{'expanded': department.isExpanded}"
+          [attr.aria-expanded]="department.isExpanded"
+          (click)="toggleExpand(department)"
+          tabindex="0">
+        </button>
+
+        <p>{{ department.name }}</p>
+      </div>
     </div>
 
-    @if (department.positions) {
+    @if (department.isExpanded && department.positions) {
       @for (position of department.positions; track position.nodeId) {
         <div class="node-row position" [ngStyle]="{'z-index': department.departmentZIndex}">
           <div class="node-name">{{ position.firstName }} {{ position.lastName }}</div>
@@ -14,7 +24,7 @@
       }
     }
 
-    @if (department.subDepartments) {
+    @if (department.isExpanded && department.subDepartments) {
       @for (item of department.subDepartments; track item.nodeId) {
         <div class="subtree">
           <app-tree class="tree" [department]="item"></app-tree>

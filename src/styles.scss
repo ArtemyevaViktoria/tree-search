@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  // Запрет выделения текста на всех элементах
+  user-select: none;
+  -webkit-user-select: none; // Chrome, Safari
+  -moz-user-select: none; // Firefox
+  -ms-user-select: none; // Internet Explorer/Edge
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button {
+  border: none;
+}
+
+button:focus-visible {
+  outline: none;
+}
