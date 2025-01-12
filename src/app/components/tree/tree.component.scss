@@ -1,6 +1,7 @@
+@use 'variables' as var;
+
 :host {
   --horizontal-line-width: 2px;
-  --row-height: 1.6rem;
 }
 
 .tree {
