@@ -1,7 +1,46 @@
-.tree-wrapper {
-  border: 1px solid gray;
+@use 'variables' as var;
+
+.container {
+  @include var.flex-column;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
 
-.body {
-  overflow-y: auto;
+.header {
+  @include var.flex-center;
+  @include var.fixed-header-footer;
+  top: 0;
+}
+
+.content {
+  @include var.flex-column;
+  flex: 1;
+  position: relative;
+  padding: calc(var(--header-footer-height) + 0.5rem) 0.5rem;
+  overflow: hidden;
+
+  .filters {
+    height: calc(var(--header-footer-height) + 0.5rem);
+    background-color: skyblue;
+  }
+
+  .tree-wrapper {
+    @include var.flex-column;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tree-container {
+    flex: 1;
+    overflow-y: auto;
+    background-color: lightgray;
+  }
+}
+
+.footer {
+  @include var.flex-center;
+  @include var.fixed-header-footer;
+  bottom: 0;
 }
