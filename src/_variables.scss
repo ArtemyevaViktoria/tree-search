@@ -1,4 +1,18 @@
 :root {
+  /* Переменные для цветов */
+  --primary-color: #4C566A;
+  --secondary-color: #81A1C1;
+  --main-background-color: #D8DEE9;
+  --text-color: #2E3440;
+  --icon-color: #3B4252;
+  --button-color: #5E81AC;
+  --accent-color: #8B008B;
+  --highlight-color: #FFD700;
+  --department-background-color: #8FBCBB;
+  --position-background-color: #C1D9DD;
+  --light-blue: #E5E9F0;
+
+  /* Другие переменные */
   --row-height: 1.6rem;
   --header-footer-height: calc(var(--row-height) * 1.5);
 }
@@ -20,5 +34,5 @@
   width: 100%;
   height: var(--header-footer-height);
   z-index: 1000;
-  background-color: plum;
+  background-color: var(--primary-color);
 }

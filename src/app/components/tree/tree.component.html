@@ -19,7 +19,9 @@
     @if (department.isExpanded && department.positions) {
       @for (position of department.positions; track position.nodeId) {
         <div class="node-row position" [ngStyle]="{'z-index': department.departmentZIndex}">
-          <div class="node-name">{{ position.firstName }} {{ position.lastName }}</div>
+          <div class="node-name">
+            <p>{{ position.firstName }} {{ position.lastName }}</p>
+          </div>
         </div>
       }
     }
