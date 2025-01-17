@@ -36,3 +36,7 @@ button {
 button:focus-visible {
   outline: none;
 }
+
+p {
+  color: var(--text-color);
+}

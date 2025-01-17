@@ -5,12 +5,12 @@
 }
 
 .tree {
-  background-color: lightgray;
+  background-color: var(--main-background-color);
   position: relative;
 }
 
 .node-row {
-  background-color: cadetblue;
+  background-color: var(--department-background-color);
   height: var(--row-height);
   display: flex;
   align-items: center;
@@ -30,9 +30,10 @@
     top: 25%;
     left: calc(var(--horizontal-line-width) / -2);
     height: 50%;
-    border-left: var(--horizontal-line-width) solid black;
+    border-left: var(--horizontal-line-width) solid var(--icon-color);
     transform: rotate(90deg) translateY(50%);
     z-index: 3;
+    color: var(--icon-color);
   }
 
   .node-name::after {
@@ -41,8 +42,9 @@
     top: calc(-100vh + (var(--row-height) / 2));
     left: calc((var(--row-height) / -2));
     height: 100vh;
-    border-left: var(--horizontal-line-width) solid black;
+    border-left: var(--horizontal-line-width) solid var(--icon-color);
     z-index: 3;
+    color: var(--icon-color);
   }
 
   .toggle-button {
@@ -53,6 +55,7 @@
     justify-content: center;
     align-items: center;
     background-color: transparent;
+    color: var(--icon-color);
   }
 
   .toggle-button::before {
@@ -64,12 +67,12 @@
   }
 
   .toggle-button:focus-visible {
-    color: darkmagenta;
+    color: var(--accent-color);
   }
 }
 
 .position {
-  background-color: pink;
+  background-color: var(--position-background-color);
   position: relative;
   margin-left: 1.5rem;
 }
