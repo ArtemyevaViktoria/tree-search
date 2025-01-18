@@ -10,7 +10,6 @@
 }
 
 .node-row {
-  background-color: var(--department-background-color);
   height: var(--row-height);
   display: flex;
   align-items: center;
@@ -18,6 +17,7 @@
 
 .department {
   position: relative;
+  background-color: var(--department-background-color);
 
   .node-name {
     display: flex;
@@ -72,9 +72,14 @@
 }
 
 .position {
-  background-color: var(--position-background-color);
+  cursor: pointer;
   position: relative;
-  margin-left: 1.5rem;
+  background-color: var(--position-background-color);
+  padding-left: 0.5rem;
+}
+
+.selected-row {
+  background-color: var(--highlight-color);
 }
 
 

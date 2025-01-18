@@ -18,7 +18,10 @@
 
     @if (department.isExpanded && department.positions) {
       @for (position of department.positions; track position.nodeId) {
-        <div class="node-row position" [ngStyle]="{'z-index': department.departmentZIndex}">
+        <div class="node-row position" (click)="onPositionClick(position)"
+             [ngStyle]="{'z-index': department.departmentZIndex, 'margin-left': department.subDepartments?.length ? '1.5rem' : 0}"
+             [ngClass]="{'selected-row': selectedPosition()?.nodeId === position.nodeId}">
+          
           <div class="node-name">
             <p>{{ position.firstName }} {{ position.lastName }}</p>
           </div>
