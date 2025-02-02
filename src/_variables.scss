@@ -11,6 +11,7 @@
   --department-background-color: #8FBCBB;
   --position-background-color: #C1D9DD;
   --light-blue: #E5E9F0;
+  --scrollbar-color: #4C566A #C1D9DD;
 
   /* Другие переменные */
   --row-height: 1.6rem;
@@ -35,4 +36,12 @@
   height: var(--header-footer-height);
   z-index: 1000;
   background-color: var(--primary-color);
+}
+
+@mixin col-text-style {
+  margin: 0 0.5rem;
+  white-space: nowrap;
+  height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

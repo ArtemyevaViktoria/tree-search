@@ -11,8 +11,9 @@
 
 .node-row {
   height: var(--row-height);
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 260px 120px 130px 260px;
+  align-content: center;
 }
 
 .department {
@@ -75,16 +76,32 @@
   cursor: pointer;
   position: relative;
   background-color: var(--position-background-color);
-  padding-left: 0.5rem;
 }
 
 .selected-row {
   background-color: var(--highlight-color);
 }
 
+.col {
+  overflow: hidden;
+  height: 100%;
+}
 
+.col-text {
+  @include var.col-text-style;
+}
 
+@media(max-width: 1180px) {
+  .node-row {
+    grid-template-columns: 1fr 210px 90px 110px 210px;
+  }
+}
 
+@media(max-width: 850px) {
+  .node-row {
+    grid-template-columns: 1fr 180px 90px 110px 170px;
+  }
+}
 
 
 

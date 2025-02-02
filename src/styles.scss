@@ -18,6 +18,13 @@ html, body {
 
 body {
   line-height: 1;
+  background-color: var(--light-blue);
+}
+
+.scrollable-y {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-color);
 }
 
 ol, ul {
@@ -39,4 +46,5 @@ button:focus-visible {
 
 p {
   color: var(--text-color);
+  line-height: 1.2;
 }
