@@ -15,28 +15,29 @@
 
 .content {
   @include var.flex-column;
-  flex: 1;
   position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
   padding: calc(var(--header-footer-height) + 0.5rem) 0.5rem;
   overflow: hidden;
-  background-color: var(--light-blue);
 
   .filters {
     height: calc(var(--header-footer-height) + 0.5rem);
     background-color: var(--main-background-color);
   }
 
-  .tree-wrapper {
+  .tree-container {
     @include var.flex-column;
     flex: 1;
     position: relative;
     overflow: hidden;
+    background-color: var(--main-background-color);
   }
 
-  .tree-container {
+  .tree-body {
     flex: 1;
-    overflow-y: auto;
-    background-color: var(--main-background-color);
   }
 }
 
@@ -44,4 +45,42 @@
   @include var.flex-center;
   @include var.fixed-header-footer;
   bottom: 0;
+}
+
+.tree-header {
+  display: grid;
+  grid-template-columns: 1fr 260px 120px 130px 260px;
+  height: var(--row-height);
+  align-content: center;
+}
+
+.row, .tree-body {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+}
+
+.col {
+  overflow: hidden;
+}
+
+.col-text {
+  @include var.col-text-style;
+}
+
+.col-text-first {
+  margin-left: 1.5rem;
+}
+
+
+@media(max-width: 1180px) {
+  .tree-header {
+    grid-template-columns: 1fr 210px 90px 110px 210px;
+  }
+}
+
+@media(max-width: 850px) {
+  .tree-header {
+    grid-template-columns: 1fr 180px 90px 110px 170px;
+  }
 }

@@ -4,8 +4,26 @@
   <div class="content">
     <div class="filters">filters</div>
 
-    <div class="tree-wrapper">
-      <div class="tree-container">
+    <div class="tree-container">
+      <div class="row tree-header">
+        <div class="col">
+          <p class="col-text col-text-first">Отдел/должность</p>
+        </div>
+        <div class="col">
+          <p class="col-text">Сотрудник</p>
+        </div>
+        <div class="col">
+          <p class="col-text">Зар/плата</p>
+        </div>
+        <div class="col">
+          <p class="col-text">Дата приема</p>
+        </div>
+        <div class="col">
+          <p class="col-text">Эл. почта</p>
+        </div>
+      </div>
+
+      <div class="tree-body scrollable-y">
         @for (item of departments(); track item.nodeId) {
           <app-tree class="node" [department]="item"></app-tree>
         }
@@ -15,8 +33,3 @@
 
   <div class="footer">footer</div>
 </div>
-
-
-
-
-
