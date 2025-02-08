@@ -23,10 +23,13 @@
              [ngClass]="{'selected-row': selectedPosition()?.nodeId === position.nodeId}">
 
           <div class="col">
-            <p class="col-text">{{ position.position }}</p>
+            <p class="col-text"
+               [innerHTML]="position.position | highlight  : (filter$ | async)?.position ?? '' : departmentStoreService">{{ position.position }}</p>
           </div>
           <div class="col">
-            <p class="col-text">{{ position.firstName }} {{ position.lastName }}</p>
+            <p class="col-text"
+               [innerHTML]="(position.lastName | highlight  : (filter$ | async)?.lastName ?? '' : departmentStoreService) + ' ' +  (position.firstName | toInitial) + (position.middleName ?? '' | toInitial)">
+            </p>
           </div>
           <div class="col">
             <p class="col-text">{{ position.salary }}</p>

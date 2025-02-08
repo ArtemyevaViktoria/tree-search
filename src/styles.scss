@@ -19,6 +19,11 @@ html, body {
 body {
   line-height: 1;
   background-color: var(--light-blue);
+  font-family: "Times New Roman", Times, serif;
+}
+
+input {
+  font-family: "Times New Roman", Times, serif;
 }
 
 .scrollable-y {
@@ -44,7 +49,12 @@ button:focus-visible {
   outline: none;
 }
 
-p {
+p, label {
   color: var(--text-color);
   line-height: 1.2;
+}
+
+.highlight {
+  background-color: var(--accent-color);
+  color: var(--highlight-text-color);
 }

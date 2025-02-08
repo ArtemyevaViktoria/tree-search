@@ -12,10 +12,11 @@ import { CommonModule } from "@angular/common";
 import { TreeComponent } from "src/app/components/tree/tree.component";
 import { DepartmentStoreService } from "src/app/services/store/department-store.service";
 import { Department, setZIndexUsingBFS } from "src/app/models/department.model";
+import { FiltersComponent } from "src/app/components/filters/filters.component";
 
 @Component({
   selector: "app-tree-wrapper",
-  imports: [CommonModule, TreeComponent],
+  imports: [CommonModule, TreeComponent, FiltersComponent],
   templateUrl: "./tree-wrapper.component.html",
   styleUrl: "./tree-wrapper.component.scss",
   standalone: true,
@@ -26,9 +27,7 @@ export class TreeWrapperComponent implements OnInit {
   private destroyRef: DestroyRef = inject(DestroyRef);
 
   /** Сервис хранилища для управления состоянием отедлов */
-  private _departmentStoreService: DepartmentStoreService = inject(
-    DepartmentStoreService,
-  );
+  private _departmentStoreService: DepartmentStoreService = inject(DepartmentStoreService);
 
   /** Записываемый сигнал для массива Department */
   public departments: WritableSignal<Department[]> = signal<Department[]>([]);
@@ -41,9 +40,7 @@ export class TreeWrapperComponent implements OnInit {
         this.departments.set(data);
 
         // Присваиваем z-index для каждого отдела в дереве, выполняя обход в ширину
-        this.departments().forEach((item: Department) =>
-          setZIndexUsingBFS(item),
-        );
+        this.departments().forEach((item: Department) => setZIndexUsingBFS(item));
       });
   }
 }
