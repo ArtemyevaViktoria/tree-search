@@ -23,8 +23,7 @@
   padding: calc(var(--header-footer-height) + 0.5rem) 0.5rem;
   overflow: hidden;
 
-  .filters {
-    height: calc(var(--header-footer-height) + 0.5rem);
+  .filters-container {
     background-color: var(--main-background-color);
   }
 
@@ -69,7 +68,7 @@
 }
 
 .col-text-first {
-  margin-left: 1.5rem;
+  margin-left: 2rem;
 }
 
 

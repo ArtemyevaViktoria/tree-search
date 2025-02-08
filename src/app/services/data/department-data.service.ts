@@ -15,7 +15,7 @@ export class DepartmentDataService {
     const mockDepartments: IDepartmentDTO[] = [
       {
         nodeId: "51af343b-2cde-45a1-b6c7-5e7f8c9d1b2a",
-        name: "Центральный офис",
+        name: "Главный офис",
         hierarchyLevel: 0,
         positions: [
           {
