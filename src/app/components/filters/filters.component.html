@@ -3,14 +3,30 @@
     <h4 class="title">Поиск</h4>
   </div>
 
-  <div>
+  <div class="input-wrapper">
     <label for="lastName" class="label">Фамилия</label>
-    <input id="lastName" type="text" formControlName="lastName" class="input">
+    <div class="input-container">
+      <input id="lastName" type="text" formControlName="lastName" class="input">
+
+      @if (!form.get('lastName')?.valid && form.get('lastName')?.touched) {
+        <div class="error-container">
+          <p class="error-text">Минимальное кол-во символов: 2</p>
+        </div>
+      }
+    </div>
   </div>
 
-  <div>
-    <label for="position" class="label">Должность</label>
-    <input id="position" type="text" formControlName="position" class="input">
+  <div class="input-wrapper">
+    <label for="lastName" class="label">Должность</label>
+    <div class="input-container">
+      <input id="position" type="text" formControlName="position" class="input">
+
+      @if (!form.get('position')?.valid && form.get('position')?.touched) {
+        <div class="error-container">
+          <p class="error-text">Минимальное кол-во символов: 2</p>
+        </div>
+      }
+    </div>
   </div>
 </div>
 

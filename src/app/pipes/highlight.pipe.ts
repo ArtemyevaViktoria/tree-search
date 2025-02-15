@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from "@angular/core";
-import { IFilterableEmployees } from "src/app/interfaces/filter.interfaces";
+import { inject, Pipe, PipeTransform } from "@angular/core";
+import { DepartmentStoreService } from "src/app/services/store/department-store.service";
 
 @Pipe({
   name: "highlight",
@@ -7,13 +7,15 @@ import { IFilterableEmployees } from "src/app/interfaces/filter.interfaces";
   pure: false,
 })
 export class HighlightPipe implements PipeTransform {
+  /** Сервис хранилища для управления состоянием отедлов */
+  private _departmentStoreService: DepartmentStoreService = inject(DepartmentStoreService);
+
   /** Подсвечивание части строки соответствующей предикату
    * @param value - значение для подсветки
    * @param predicate - предикат для подсветки
-   * @param filterService - сервис для фильтрации
    */
-  transform(value: string, predicate: string, filterService: IFilterableEmployees): string {
-    return filterService.isHighlightPredicateSearchable()
+  transform(value: string, predicate: string): string {
+    return this._departmentStoreService.isFilterFormValid()
       ? value
           .toString()
           .replace(
