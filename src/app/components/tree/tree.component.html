@@ -24,11 +24,11 @@
 
           <div class="col">
             <p class="col-text"
-               [innerHTML]="position.position | highlight  : (filter$ | async)?.position ?? '' : departmentStoreService">{{ position.position }}</p>
+               [innerHTML]="position.position | highlight  : (filter$ | async)?.position ?? ''">{{ position.position }}</p>
           </div>
           <div class="col">
             <p class="col-text"
-               [innerHTML]="(position.lastName | highlight  : (filter$ | async)?.lastName ?? '' : departmentStoreService) + ' ' +  (position.firstName | toInitial) + (position.middleName ?? '' | toInitial)">
+               [innerHTML]="(position.lastName | highlight  : (filter$ | async)?.lastName ?? '' + ' ' +  (position.firstName | toInitial) + (position.middleName ?? '' | toInitial))">
             </p>
           </div>
           <div class="col">

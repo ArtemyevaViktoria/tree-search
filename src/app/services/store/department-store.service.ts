@@ -5,12 +5,8 @@ import { DepartmentDataService } from "src/app/services/data/department-data.ser
 import { Department } from "src/app/models/department.model";
 import { IDepartmentDTO } from "src/app/interfaces/department.interfaces";
 import { IEmployee } from "src/app/interfaces/employee.interfaces";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import {
-  IFilterableEmployees,
-  IFilterEmployee,
-  IFilterForm,
-} from "src/app/interfaces/filter.interfaces";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { IFilterEmployee, IFilterForm } from "src/app/interfaces/filter.interfaces";
 
 /**
  * Сервис хранилища для управления состоянием отделов.
@@ -18,7 +14,7 @@ import {
 @Injectable({
   providedIn: "root",
 })
-export class DepartmentStoreService implements IFilterableEmployees {
+export class DepartmentStoreService {
   /** Сервис для получения данных отедлов с бэкенда */
   private _departmentDataService: DepartmentDataService = inject(DepartmentDataService);
 
@@ -37,8 +33,8 @@ export class DepartmentStoreService implements IFilterableEmployees {
   /**  Создание и подписка на изменения формы фильтра */
   constructor(private _fb: FormBuilder) {
     this._filterForm = this._fb.group({
-      lastName: [""],
-      position: [""],
+      lastName: ["", [Validators.minLength(2)]],
+      position: ["", [Validators.minLength(2)]],
     });
 
     this._filterForm.valueChanges.subscribe((values) => {
@@ -48,6 +44,14 @@ export class DepartmentStoreService implements IFilterableEmployees {
 
   /**  Observable для доступа к состоянию фильтра */
   public filter$: Observable<IFilterEmployee> = this._filterSubject$.asObservable();
+
+  /**
+   * Возвращает true, если форма фильтрации валидна, иначе false.
+   * @returns boolean
+   */
+  public isFilterFormValid(): boolean {
+    return this._filterForm.valid;
+  }
 
   /** Выбранная позиция */
   public readonly selectedPosition: Signal<IEmployee | null> = this._selectedPosition.asReadonly();
@@ -77,18 +81,5 @@ export class DepartmentStoreService implements IFilterableEmployees {
   /** Установка выбранной позиции */
   public setSelectedPosition(position: IEmployee): void {
     this._selectedPosition.set(position);
-  }
-
-  /**
-   * Определяет, можно ли осуществлять поиск предиката для подсветки,
-   * исходя из значений полей формы фильтрации.
-   */
-  public isHighlightPredicateSearchable(): boolean {
-    return (
-      (!this._filterForm.controls.lastName.value ||
-        (this._filterForm.controls.lastName.value?.length | 0) > 1) &&
-      (!this._filterForm.controls.position.value ||
-        (this._filterForm.controls.position.value?.length | 0) > 1)
-    );
   }
 }
