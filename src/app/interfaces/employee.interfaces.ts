@@ -33,3 +33,15 @@ export interface IEmployee {
   // Заработная плата
   salary: number;
 }
+
+/**
+ * Сотрудник и его элемент DOM.
+ * Используется для перемещения по сотрудникам (при клике на enter), соответствующих условиям фильтров.
+ */
+export interface IEmployeeElementContext {
+  // Данные сотрудника
+  employee: IEmployee;
+
+  // Элемент DOM
+  elem: HTMLElement;
+}

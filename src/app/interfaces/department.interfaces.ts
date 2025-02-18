@@ -1,4 +1,5 @@
 import { IEmployee } from "src/app/interfaces/employee.interfaces";
+import { WritableSignal } from "@angular/core";
 
 /**
  * Интерфейс, описывающий состояние пользовательского интерфейса для отдела.
@@ -6,7 +7,7 @@ import { IEmployee } from "src/app/interfaces/employee.interfaces";
  */
 export interface IDepartmentState {
   // Флаг, указывающий, развернут ли отдел для отображения поддотделов и позиций
-  isExpanded: boolean;
+  isExpanded: WritableSignal<boolean>;
 
   // Уровень z-index для узлов дерева, представляющих отделы
   departmentZIndex?: number;

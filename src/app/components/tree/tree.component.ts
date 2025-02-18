@@ -31,7 +31,7 @@ export class TreeComponent {
 
   /** Изменяет состояние развернутости указанного отдела */
   public toggleExpand(department: Department): void {
-    department.isExpanded = !department.isExpanded;
+    department.isExpanded.set(!department.isExpanded());
   }
 
   /** Обработчик клика по строке позиции */

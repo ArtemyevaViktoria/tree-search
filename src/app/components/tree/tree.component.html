@@ -6,8 +6,8 @@
       <div class="node-name">
         <button
           class="toggle-button"
-          [ngClass]="{'expanded': department.isExpanded}"
-          [attr.aria-expanded]="department.isExpanded"
+          [ngClass]="{'expanded': department.isExpanded()}"
+          [attr.aria-expanded]="department.isExpanded()"
           (click)="toggleExpand(department)"
           tabindex="0">
         </button>
@@ -16,9 +16,10 @@
       </div>
     </div>
 
-    @if (department.isExpanded && department.positions) {
+    @if (department.isExpanded() && department.positions) {
       @for (position of department.positions; track position.nodeId) {
-        <div class="node-row position" (click)="onPositionClick(position)"
+        <div [attr.data-nodeId]="position.nodeId"
+             class="node-row position" (click)="onPositionClick(position)"
              [ngStyle]="{'z-index': department.departmentZIndex, 'margin-left': department.subDepartments?.length ? '1.5rem' : 0}"
              [ngClass]="{'selected-row': selectedPosition()?.nodeId === position.nodeId}">
 
@@ -28,7 +29,10 @@
           </div>
           <div class="col">
             <p class="col-text"
-               [innerHTML]="(position.lastName | highlight  : (filter$ | async)?.lastName ?? '' + ' ' +  (position.firstName | toInitial) + (position.middleName ?? '' | toInitial))">
+               [innerHTML]="
+               (position.lastName | highlight : ((filter$ | async)?.lastName ?? ''))
+               + ' ' + (position.firstName | toInitial)
+               + (position.middleName ? (position.middleName | toInitial) : '')">
             </p>
           </div>
           <div class="col">
@@ -44,7 +48,7 @@
       }
     }
 
-    @if (department.isExpanded && department.subDepartments) {
+    @if (department.isExpanded() && department.subDepartments) {
       @for (item of department.subDepartments; track item.nodeId) {
         <div class="subtree">
           <app-tree class="tree" [department]="item"></app-tree>

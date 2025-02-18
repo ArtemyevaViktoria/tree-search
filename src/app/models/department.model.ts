@@ -1,5 +1,6 @@
 import { DepartmentType, IDepartment } from "src/app/interfaces/department.interfaces";
 import { IEmployee } from "src/app/interfaces/employee.interfaces";
+import { signal, WritableSignal } from "@angular/core";
 
 /** Инициализирует начальное значение z-index для узлов дерева, начиная с 100.
  * Каждый новый узел будет получать уменьшенное значение z-index, чтобы обеспечить правильный порядок наложения элементов.
@@ -27,7 +28,7 @@ export class Department implements IDepartment<Department> {
   subDepartments?: Department[];
 
   /** @inheritdoc */
-  isExpanded: boolean = false;
+  isExpanded: WritableSignal<boolean> = signal(false);
 
   /** @inheritdoc */
   departmentZIndex: number = 0;
@@ -36,7 +37,7 @@ export class Department implements IDepartment<Department> {
     Object.assign(this, init);
 
     // Установка isExpanded в true для корневых узлов (уровень вложенности 0)
-    this.isExpanded = this.hierarchyLevel === 0;
+    this.isExpanded.set(this.hierarchyLevel === 0);
 
     // Инициализация подотделов, если они указаны в объекте init
     this.subDepartments = init?.subDepartments?.map((subDep) => new Department(subDep)) ?? [];
@@ -63,4 +64,31 @@ export function setZIndexUsingBFS(root: Department) {
       node.subDepartments?.forEach((child) => queue.push(child));
     }
   }
+}
+
+/**
+ * Метод для поиска родительского отдела по nodeId дочернего отдела.
+ * @param departments - массив отделов.
+ * @param nodeId - идентификатор дочернего отдела.
+ * @returns родительский отдел или undefined, если не найден.
+ */
+export function getParentDepartment(
+  departments: Department[],
+  nodeId: string,
+): Department | undefined {
+  for (const department of departments) {
+    if (department.subDepartments) {
+      for (const subDepartment of department.subDepartments) {
+        if (subDepartment.nodeId === nodeId) {
+          return department;
+        }
+
+        const foundParent = getParentDepartment(department.subDepartments, nodeId);
+        if (foundParent) {
+          return foundParent;
+        }
+      }
+    }
+  }
+  return undefined;
 }
