@@ -21,37 +21,33 @@ export class DepartmentStoreService {
   /** Выбранная позиция */
   private _selectedPosition: WritableSignal<IEmployee | null> = signal(null);
 
-  /** Форма фильтрации */
-  private readonly _filterForm!: FormGroup<IFilterForm>;
-
   /** BehaviorSubject для формы фильтрации */
   private _filterSubject$: BehaviorSubject<IFilterEmployee> = new BehaviorSubject<IFilterEmployee>({
     lastName: "",
     position: "",
   });
 
-  /**  Создание и подписка на изменения формы фильтра */
+  /** Форма фильтрации */
+  public readonly filterForm!: FormGroup<IFilterForm>;
+
+  /** Признак изменения формы фильтрации */
+  public filterFormChanged: WritableSignal<boolean> = signal(false);
+
+  /** Создание и подписка на изменения формы фильтра */
   constructor(private _fb: FormBuilder) {
-    this._filterForm = this._fb.group({
+    this.filterForm = this._fb.group({
       lastName: ["", [Validators.minLength(2)]],
       position: ["", [Validators.minLength(2)]],
     });
 
-    this._filterForm.valueChanges.subscribe((values) => {
+    this.filterForm.valueChanges.subscribe((values) => {
       this._filterSubject$.next(values as IFilterEmployee);
+      this.filterFormChanged.set(true);
     });
   }
 
-  /**  Observable для доступа к состоянию фильтра */
+  /** Observable для доступа к состоянию фильтра */
   public filter$: Observable<IFilterEmployee> = this._filterSubject$.asObservable();
-
-  /**
-   * Возвращает true, если форма фильтрации валидна, иначе false.
-   * @returns boolean
-   */
-  public isFilterFormValid(): boolean {
-    return this._filterForm.valid;
-  }
 
   /** Выбранная позиция */
   public readonly selectedPosition: Signal<IEmployee | null> = this._selectedPosition.asReadonly();
@@ -70,12 +66,25 @@ export class DepartmentStoreService {
 
   /** Получение формы фильтрации */
   public getFilterForm(): FormGroup<IFilterForm> {
-    return this._filterForm;
+    return this.filterForm;
   }
 
   /** Получение Observable фильтра */
   public getFilter(): Observable<IFilterEmployee> {
     return this.filter$;
+  }
+
+  /**
+   * Возвращает true, если форма фильтрации валидна, иначе false.
+   * @returns boolean
+   */
+  public isFilterFormValid(): boolean {
+    return this.filterForm.valid;
+  }
+
+  /** Устанавливает признак изменения формы фильтрации */
+  public setFilterFormChanged(vl: boolean) {
+    this.filterFormChanged.set(vl);
   }
 
   /** Установка выбранной позиции */
