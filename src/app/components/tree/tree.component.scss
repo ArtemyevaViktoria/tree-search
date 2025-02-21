@@ -12,7 +12,7 @@
 .node-row {
   height: var(--row-height);
   display: grid;
-  grid-template-columns: 1fr 260px 120px 130px 260px;
+  grid-template-columns: 1fr 260px 160px 260px;
   align-content: center;
 }
 
@@ -88,18 +88,19 @@
 }
 
 .col-text {
+  cursor: pointer;
   @include var.col-text-style;
 }
 
-@media(max-width: 1180px) {
+@media(max-width: 1100px) {
   .node-row {
-    grid-template-columns: 1fr 210px 90px 110px 210px;
+    grid-template-columns: 1fr 220px 140px 220px;
   }
 }
 
-@media(max-width: 850px) {
+@media(max-width: 950px) {
   .node-row {
-    grid-template-columns: 1fr 180px 90px 110px 170px;
+    grid-template-columns: 1fr 190px 120px 170px;
   }
 }
 

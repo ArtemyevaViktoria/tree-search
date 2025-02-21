@@ -11,6 +11,12 @@
   @include var.flex-center;
   @include var.fixed-header-footer;
   top: 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  .title {
+    color: var(--text-light-color);
+    letter-spacing: 3px;
+  }
 }
 
 .content {
@@ -20,7 +26,7 @@
   width: 100%;
   max-width: 1440px;
   margin: auto;
-  padding: calc(var(--header-footer-height) + 0.5rem) 0.5rem;
+  padding: calc(var(--header-footer-height) + 0.5rem) 0 calc(var(--header-footer-height)) 0;
   overflow: hidden;
 
   .filters-container {
@@ -37,6 +43,8 @@
 
   .tree-body {
     flex: 1;
+    border: 1px solid var(--icon-color);
+    border-bottom: none;
   }
 }
 
@@ -44,11 +52,28 @@
   @include var.flex-center;
   @include var.fixed-header-footer;
   bottom: 0;
+
+  .github-icon {
+    margin-left: 0.5rem;
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+    color: var(--text-light-color);
+    letter-spacing: 2px;
+  }
+}
+
+.github-link:hover {
+  .github-icon-path {
+    fill: var(--highlight-text-color);
+  }
 }
 
 .tree-header {
   display: grid;
-  grid-template-columns: 1fr 260px 120px 130px 260px;
+  grid-template-columns: 1fr 260px 160px 260px;
   height: var(--row-height);
   align-content: center;
 }
@@ -72,14 +97,14 @@
 }
 
 
-@media(max-width: 1180px) {
+@media(max-width: 1100px) {
   .tree-header {
-    grid-template-columns: 1fr 210px 90px 110px 210px;
+    grid-template-columns: 1fr 220px 140px 220px;
   }
 }
 
-@media(max-width: 850px) {
+@media(max-width: 950px) {
   .tree-header {
-    grid-template-columns: 1fr 180px 90px 110px 170px;
+    grid-template-columns: 1fr 190px 120px 170px;
   }
 }
