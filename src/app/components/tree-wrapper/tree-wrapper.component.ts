@@ -54,6 +54,9 @@ export class TreeWrapperComponent implements OnInit {
   /** Записываемый сигнал для массива Department */
   public departments: WritableSignal<Department[]> = signal<Department[]>([]);
 
+  /** Текущий год */
+  public currentYear!: number;
+
   ngOnInit(): void {
     this._departmentStoreService
       .getDepartments()
@@ -71,6 +74,8 @@ export class TreeWrapperComponent implements OnInit {
       .subscribe(() => {
         this._startFilteredEmployeeTransition();
       });
+
+    this.currentYear = new Date().getFullYear();
   }
 
   /** Обработчик нажатия клавиши Enter */
