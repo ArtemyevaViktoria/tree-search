@@ -1,59 +1,38 @@
-# TreeSearch
+# Tree Search Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.5.
+#### An application for tree search with departments and employees
 
-## Development server
+#### 🔍 Поиск по дереву 
 
-To start a local development server, run:
+<div align="left">
+  <img height="350" width="530" src="src/assets/search.gif"/>
+</div>
 
-```bash
-ng serve
-```
+<br>
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Поиск сотрудников в древовидной структуре организации. Пользователь вводит фамилию и/или должность в поля фильтра, нажимает Enter, и результаты отображаются в виде развернутого дерева. Найденные фрагменты текста подсвечиваются, а для удобства навигации предусмотрен последовательный поиск по результатам (при повторных кликах на Enter).
 
-## Code scaffolding
+## 🛠️ Основные функции
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Древовидная структура: отображение отделов и сотрудников в виде иерархического дерева.
+- Фильтрация: поиск сотрудников по фамилии и/или должности.
+- Автоматическое раскрытие узлов: при поиске автоматически раскрываются узлы дерева, содержащие найденных сотрудников.
+- Последовательный поиск: при повторном нажатии Enter (без изменения фильтра) происходит переход к следующему найденному сотруднику.
+- Подсветка предикатов: отображение введенного в фильтр текста в результатах поиска.
+- Автопрокрутка: приложение автоматически прокручивает область результатов поиска к первому найденному сотруднику, а также к каждому последующему при повторных нажатиях Enter.
 
-```bash
-ng generate component component-name
-```
+## 🌐 Стек технологий
+- Angular
+- TypeScript
+- HTML5
+- SCSS
+- RxJs
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Установка зависимостей
+`npm install`
 
-```bash
-ng generate --help
-```
+## Запуск проекта на локальном сервере
+`ng serve`
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng tree-wrapper
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Сборка
+`ng build`
